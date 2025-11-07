@@ -1,0 +1,32 @@
+# Snakemake internals & outputs
+.snakemake/
+logs/
+results/
+data/trimmed/
+data/intermediate/
+# raw data & huge files (keep outside GitHub; store elsewhere)
+data/raw/
+*.fastq.gz
+*.fq.gz
+*.bam
+*.sam
+*.cram
+*.fa
+*.fna
+*.fasta
+*.fai
+*.gtf
+*.gff
+*.tar.gz
+*.zip
+
+# OS noise
+.DS_Store
+
+# Keep code & configs
+!Snakefile
+!config.yaml
+!workflow/**
+!resources/**
+!Dockerfile
+!README.md

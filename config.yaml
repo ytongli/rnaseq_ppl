@@ -1,0 +1,30 @@
+# Configuration for RNA-seq pipeline
+# Study: Yeast wild-type BY4741, biological replicates
+
+samples:
+  - SRR4238351
+  - SRR4238352
+
+reference:
+  # Saccharomyces cerevisiae (yeast) reference genome
+  genome: "resources/genome/yeast_genome.fa"
+  annotation: "resources/annotation/yeast_annotation.gtf"
+  star_index: "resources/star_index"
+
+# Thread allocation for each step
+threads:
+  fastqc: 1
+  fastp: 4
+  star: 8
+  stringtie: 4
+  gffcompare: 1
+
+# Parameters
+params:
+  fastp:
+    quality: 20
+    min_length: 50
+  star:
+    intron_min: 20
+    intron_max: 1000000
+    overhang: 49  # Changed to 49 for 50bp reads (read_length - 1)
