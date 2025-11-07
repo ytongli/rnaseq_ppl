@@ -1,12 +1,11 @@
 # RNA-seq Pipeline for Novel Isoform Discovery in Yeast
-# Starting with just FastQC
 
 configfile: "config.yaml"
 
 # Sample names
 SAMPLES = config["samples"]
 
-# What we want at the end (for now, just FastQC outputs)
+# Final Deliverable
 rule all:
     input:
         expand("results/qc/pretrim/{sample}_fastqc.html",  sample=SAMPLES),
@@ -31,7 +30,7 @@ rule fastqc_raw:
         fastqc {input} -o results/qc/pretrim > {log} 2>&1
         """
 
-#TODO: Aggregate QC reports with MultiQC
+# TODO: Aggregate QC reports with MultiQC
 
 # Trim and filter reads with fastp
 rule fastp:
