@@ -45,6 +45,8 @@ FastQC (initial quality control)
     ↓
 fastp (adapter trimming + quality filtering)
     ↓
+FastQC (assess trimming quality)
+    ↓
 STAR (alignment to reference genome)
     ↓
 StringTie (per-sample transcriptome assembly)
@@ -66,13 +68,13 @@ MultiQC (aggregate all QC metrics)
 ### 3.2 Pipeline Stages
 
 #### Stage 1: Quality Control
-- **Tool**: FastQC v0.11.9+
+- **Tool**: FastQC v0.12.1
 - **Input**: Raw FASTQ files
-- **Output**: HTML reports with quality metrics
+- **Output**: HTML/Zip reports with quality metrics
 - **Purpose**: Assess read quality, adapter content, GC bias
 
 #### Stage 2: Read Preprocessing
-- **Tool**: fastp v0.23.0+
+- **Tool**: fastp v1.0.1
 - **Input**: Raw FASTQ files
 - **Output**: Trimmed FASTQ files, JSON/HTML reports
 - **Parameters**:
@@ -80,3 +82,9 @@ MultiQC (aggregate all QC metrics)
   - Minimum read length: 50bp
   - Adapter auto-detection enabled
 - **Purpose**: Remove adapters, low-quality bases, short reads
+
+#### Stage 3: Quality Control of Trimmed Reads
+- **Tool**: FastQC v0.12.1
+- **Input**: Trimmed FASTQ files
+- **Output**: HTML/Zip reports with quality metrics
+- **Purpose**: Assess trimming quality
